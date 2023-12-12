@@ -1,0 +1,16 @@
+{
+  "avions": [
+    {
+      "id": 0,
+      "marque": "marque1",
+      "description": "desc1",
+      "date": "12-10-2023"
+    },
+    {
+      "marque": "abc",
+      "description": "1235",
+      "date": "2022-10-31",
+      "id": 4
+    }
+  ]
+}

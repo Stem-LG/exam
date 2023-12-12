@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Project Demo Page</title>
+  </head>
+  <body class="text-center">
+    <button onclick="add_dialog.showModal()" class="btn btn-primary mt-16 mb-4">
+      Ajouter une avion
+    </button>
+    <table class="w-[650px] mx-auto bg-slate-400 table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>marque</th>
+          <th>description</th>
+          <th>date</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of avions">
+          <td>{{a.id}}</td>
+          <td>{{a.marque}}</td>
+          <td>{{a.description}}</td>
+          <td>{{a.date}}</td>
+          <td>
+            <button class="btn btn-xs btn-primary mr-2" (click)="openEdit(a)">
+              modifier
+            </button>
+            <button class="btn btn-error btn-xs" (click)="delete(a.id)">
+              supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <dialog id="add_dialog">
+      <form
+        (ngSubmit)="addSubmit()"
+        class="flex flex-col gap-4 p-6"
+        [formGroup]="addForm"
+        [noValidate]="false"
+      >
+        <h1 class="text-xl font-bold">Ajouter une avion</h1>
+        <p class="mr-auto">Marque</p>
+        <input
+          type="text"
+          class="input bg-slate-400"
+          formControlName="marque"
+          required
+        />
+        <p class="mr-auto">Description</p>
+        <input
+          type="text"
+          class="input bg-slate-400"
+          formControlName="description"
+          required
+        />
+        <p class="mr-auto">Date de construction</p>
+        <input
+          type="date"
+          class="input bg-slate-400"
+          formControlName="date"
+          required
+        />
+        <button type="submit" class="btn btn-sm btn-primary">Confirmer</button>
+        <button
+          type="reset"
+          onclick="add_dialog.close()"
+          class="btn btn-sm btn-error"
+        >
+          Annuler
+        </button>
+      </form>
+    </dialog>
+
+    <dialog id="edit_dialog">
+      <form
+        (ngSubmit)="editSubmit()"
+        class="flex flex-col gap-4 p-6"
+        [formGroup]="addForm"
+        [noValidate]="false"
+      >
+        <h1 class="text-xl font-bold">Modifier l'avion: {{edit}}</h1>
+        <p class="mr-auto">Marque</p>
+        <input
+          type="text"
+          class="input bg-slate-400"
+          formControlName="marque"
+          required
+        />
+        <p class="mr-auto">Description</p>
+        <input
+          type="text"
+          class="input bg-slate-400"
+          formControlName="description"
+          required
+        />
+        <p class="mr-auto">Date de construction</p>
+        <input
+          type="date"
+          class="input bg-slate-400"
+          formControlName="date"
+          required
+        />
+        <button type="submit" class="btn btn-sm btn-primary">Confirmer</button>
+        <button
+          type="reset"
+          onclick="edit_dialog.close()"
+          class="btn btn-sm btn-error"
+        >
+          Annuler
+        </button>
+      </form>
+    </dialog>
+  </body>
+</html>
